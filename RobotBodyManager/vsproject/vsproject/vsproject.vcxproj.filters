@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\library">
+      <UniqueIdentifier>{0f181c7a-70e2-4628-8cd6-65b6f39f3227}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main">
+      <UniqueIdentifier>{b2002239-3d84-45d2-869f-5cb8a5f008d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\make">
+      <UniqueIdentifier>{eaae2173-eec3-41c8-832b-e4ac2fb004c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\RobotBodyManager">
+      <UniqueIdentifier>{847e08ba-955a-4427-96a1-8fd3d2f5ec4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\RobotControlManager">
+      <UniqueIdentifier>{81525deb-4ec1-4a70-8cff-313e4b2ddff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\StateManager">
+      <UniqueIdentifier>{52161085-f5e2-40c5-b07f-6aae595b35e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\TimerManager">
+      <UniqueIdentifier>{79fe700c-777a-4695-a5de-42dcb042541b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MessageCommManager">
+      <UniqueIdentifier>{8b4afbd5-c34a-4549-9aab-9df855040c3a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\library\CSingleton.h">
+      <Filter>소스 파일\library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\library\pipeline_api.h">
+      <Filter>소스 파일\library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\library\uart_api.h">
+      <Filter>소스 파일\library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\library\cam_disp.h">
+      <Filter>소스 파일\library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\library\CommProc.h">
+      <Filter>소스 파일\library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CMessageCommManager.h">
+      <Filter>소스 파일\MessageCommManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CTimeManager.h">
+      <Filter>소스 파일\TimerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CRobotControlManager.h">
+      <Filter>소스 파일\RobotControlManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CRobotBodyManager.h">
+      <Filter>소스 파일\RobotBodyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\CStateManager.h">
+      <Filter>소스 파일\StateManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\library\Makefile">
+      <Filter>소스 파일\library</Filter>
+    </None>
+    <None Include="..\..\Makefile">
+      <Filter>소스 파일\make</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\library\pipeline_api.c">
+      <Filter>소스 파일\library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\library\uart_api.c">
+      <Filter>소스 파일\library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\library\cam_disp.c">
+      <Filter>소스 파일\library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\library\CommProc.c">
+      <Filter>소스 파일\library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\main.c">
+      <Filter>소스 파일\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CMessageCommManager.c">
+      <Filter>소스 파일\MessageCommManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CTimeManager.c">
+      <Filter>소스 파일\TimerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CRobotControlManager.c">
+      <Filter>소스 파일\RobotControlManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CRobotBodyManager.c">
+      <Filter>소스 파일\RobotBodyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\CStateManager.c">
+      <Filter>소스 파일\StateManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
