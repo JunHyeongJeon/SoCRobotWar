@@ -25,8 +25,8 @@ CManager::~CManager()
 void CManager::SetPriOrderList()
 {
 
-// 	m_priOrderList.push(M_BARI1);
-// 	m_priOrderList.push(M_HURDLE);
+ 	m_priOrderList.push(M_BARI1);
+ 	m_priOrderList.push(M_HURDLE);
 
 // 	m_priOrderList.push(M_EDGE);
 // 	m_priOrderList.push(M_TURNEL1);
