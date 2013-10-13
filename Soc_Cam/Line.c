@@ -297,6 +297,7 @@ float CLine::GetGradient(_us (*img)[256])
 	}
 	*/
 
+	//수정
 	
 	//p2를 기준으로 기울기차이가 많이나는 갑은 제거 하여 2개의 포인터만 남긴다.
 	while(gradList.size() > 2)
