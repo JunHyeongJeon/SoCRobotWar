@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\soc_main.c" />
+    <ClCompile Include="..\..\Bari.c">
+      <Filter>0. Mission\0. Bariㄷㄷ</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Red.c">
+      <Filter>0. Mission\6. Redㄷㄷ</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Mission.c">
+      <Filter>0. Mission</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\library\CommProc.c" />
+    <ClCompile Include="..\..\Hurdle.c">
+      <Filter>0. Mission\1. Hurdle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Turnel1.c">
+      <Filter>0. Mission\2. Turnel1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Stair.c">
+      <Filter>0. Mission\3. Stair</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Turnel2.c">
+      <Filter>0. Mission\4. Turnel2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Golf.c">
+      <Filter>0. Mission\5. Golf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Bari2.c">
+      <Filter>0. Mission\7. Bari2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Line.c">
+      <Filter>0. Mission\8.Line</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\library\CommProc.h" />
+    <ClInclude Include="..\..\MyHeader.h" />
+    <ClInclude Include="..\..\Bari.h">
+      <Filter>0. Mission\0. Bariㄷㄷ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Red.h">
+      <Filter>0. Mission\6. Redㄷㄷ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Bari2.h">
+      <Filter>0. Mission\7. Bari2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Golf.h">
+      <Filter>0. Mission\5. Golf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Hurdle.h">
+      <Filter>0. Mission\1. Hurdle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Turnel1.h">
+      <Filter>0. Mission\2. Turnel1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Turnel2.h">
+      <Filter>0. Mission\4. Turnel2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Stair.h">
+      <Filter>0. Mission\3. Stair</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MyChild.h" />
+    <ClInclude Include="..\..\Mission.h">
+      <Filter>0. Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Line.h">
+      <Filter>0. Mission\8.Line</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="0. Mission">
+      <UniqueIdentifier>{f97f7507-ed04-40e9-a495-3609519b1640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\1. Hurdle">
+      <UniqueIdentifier>{d49da859-cf50-473a-a015-965ce0c74eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\2. Turnel1">
+      <UniqueIdentifier>{fc7cf99e-4dec-4831-9f4e-0f37817c34fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\3. Stair">
+      <UniqueIdentifier>{95e233dd-b90d-41c9-bd34-c12e32608fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\4. Turnel2">
+      <UniqueIdentifier>{725cd52c-b06b-4cb5-9480-bc5735104526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\5. Golf">
+      <UniqueIdentifier>{d349707b-580d-4be2-8dcb-bf2843b115c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\7. Bari2">
+      <UniqueIdentifier>{589cfa68-2d8f-431b-a1e6-4703fa0015bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\8.Line">
+      <UniqueIdentifier>{2da86975-b144-4d79-8afa-7e3355c3036b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\0. Bariㄷㄷ">
+      <UniqueIdentifier>{a3048f29-869c-44ad-950a-9f691481eb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\6. Redㄷㄷ">
+      <UniqueIdentifier>{1805608a-1736-4bb3-846e-d34ec4473324}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
