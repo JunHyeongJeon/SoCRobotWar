@@ -33,6 +33,7 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 	tsend.now = MI_NOW;
 	_us r_temp, g_temp, b_temp;
 	int i = 0;
+	_us r_temp, g_temp, b_temp;
 	int j = 0;
 	int blue_line = 0;
 	int blue_line2 = 0;
@@ -91,11 +92,11 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 		}		
 	}
 	else if(bChk){
-		if(iChk < 2){
+		if(m_iChk < 2){
 			tsend.now = MI_NOW;
 			tsend.state = R_GO;
 			tsend.step = MV_2;
-			++iChk;
+			++m_iChk;
 		}
 		else{
 			tsend.now = MI_END;
