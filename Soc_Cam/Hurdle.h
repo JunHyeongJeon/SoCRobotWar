@@ -3,6 +3,8 @@
 class CHurdle :
 	public CMission
 {
+private:
+	int m_iChk;
 public:
 	virtual bool MissionTest(_us (*img)[256]);
 	virtual TSEND Missioning(_us (*img)[256], int now);

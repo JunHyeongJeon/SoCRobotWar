@@ -21,13 +21,16 @@ TSEND CTurnel1::Missioning(_us (*img)[256], int now){
 		m_send = Step1(img);
 		break;
 	case 1:
+		m_send = LineChk(img);
+		break;
+	case 2:
 		m_send = Step2(img);
-		break;	
+		break;
 	}
 	return m_send;
 }
 
-int CTurnel1::CheckMid(_us (*img)[256]){	
+int CTurnel1::CheckMid(_us (*img)[256]){
 	_us r_temp, g_temp, b_temp;
 	int i = 0;
 	int j = 0;
@@ -51,19 +54,20 @@ int CTurnel1::CheckMid(_us (*img)[256]){
 		else{
 			blue_line = 0;
 		}
-		if(blue_line > 5){						
+		if(blue_line > 5){
 			blue_line = 0;
 			return i;
 		}
 	}
 	return -1;
 }
+
 TSEND CTurnel1::Step1(_us (*img)[256]){
 	TSEND tsend;
 	tsend.state = R_WAIT;
 	tsend.step = MV_0;
 	tsend.now = MI_NOW;
-	tsend.size = 3;
+	tsend.size = 4;
 
 	if(iDir == 0){
 		tsend.state = R_HEAD_LEFT;
@@ -76,7 +80,7 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 			m_bLeft = true;
 		tsend.state = R_HEAD_RIGHT;
 	}
-	else if(iDir == 2){		
+	else if(iDir == 2){
 		m_iRight = CheckMid(img);
 		if(m_iRight == -1)
 			m_bRight = false;
@@ -84,11 +88,11 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 			m_bRight = true;
 		tsend.state = R_HEAD_CENTER;
 	}
-	else if(iDir == 3){		
+	else if(iDir == 3){
 		
 		///////////////오른쪽 카메라 끝
 		tsend.now = MI_NOW;
-		tsend.step = MV_0;		
+		tsend.step = MV_0;
 		if(m_bLeft && m_bRight){
 			printf("-------------------------------------------------------------\n");
 			printf("\t%d\t\t%d\n", m_iLeft, m_iRight);
@@ -99,7 +103,7 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 				tsend.state = R_RIGHT;
 			else{
 				tsend.state = R_TURNRIGHT90;
-				tsend.now = MI_NEXT;				
+				tsend.now = MI_NEXT;
 			}
 		}
 		else if(m_bLeft)
@@ -126,12 +130,22 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 	return tsend;
 }
 
+TSEND CTurnel1::LineChk(_us (*img)[256]){
+	TSEND tsend;
+	tsend.state = R_WAIT;
+	tsend.step = MV_0;
+	tsend.now = MI_NOW;
+	tsend.size = 4;
+
+	return tsend;
+}
+
 TSEND CTurnel1::Step2(_us (*img)[256]){
 	TSEND tsend;
 	tsend.state = R_LEFT;
 	tsend.step = MV_0;
 	tsend.now = MI_NOW;
-	tsend.size = 3;
+	tsend.size = 4;
 	//////////////////////////////////////////////////////////////////////////
 	_us r_temp, g_temp, b_temp;
 	int i = 0;
@@ -141,8 +155,7 @@ TSEND CTurnel1::Step2(_us (*img)[256]){
 	int blue_line = 0;	
 	int iRight = 0;	
 	bool bRight = false;
-	static bool bChk = false;
-	_us temp = 0xFFFF;
+	static bool bChk = false;	
 	///////////////왼쪽 카메라
 	for(; i < 180; ++i){
 		blue_chk = 0;

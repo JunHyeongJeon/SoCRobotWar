@@ -31,12 +31,12 @@ TSEND CBari::Step1(_us (*img)[256]){
 	static int iGo = 0;
 
 	TSEND tsend;
-	tsend.state = R_GO;
+	tsend.state = R_GO_BARI;
 	tsend.step = MV_0;
 	tsend.now = MI_NOW;
-	tsend.size = 3;
+	tsend.size = 4;
 
-	int pre_chk = 0;
+	
 	_us r_temp, g_temp, b_temp;
 	int i = 20;
 	int j = 0;
@@ -46,7 +46,6 @@ TSEND CBari::Step1(_us (*img)[256]){
 	int max_pat = 0;
 	_us bari_temp = 0xFFFF;
 	int max_line = 0;
-
 	int black_chk = 0;
 	int yellow_chk = 0;
 	for(i = 20; i < 120; ++i){
@@ -74,7 +73,9 @@ TSEND CBari::Step1(_us (*img)[256]){
 						black_chk = 0;
 					}
 					else if(bari_temp == (_Red | _Green)){
+						bari_temp = img[i][j];
 						++yellow_chk;
+						black_chk = 0;
 					}
 				}
 			}
@@ -92,9 +93,11 @@ TSEND CBari::Step1(_us (*img)[256]){
 						yellow_chk = 0;
 					}
 					else if(bari_temp == 0 || bari_temp == _Blue){
+						bari_temp = img[i][j];
 						++black_chk;
+						yellow_chk = 0;
 					}
-				}				
+				}
 			}
 
 		}// for¹® ³¡
@@ -106,14 +109,14 @@ TSEND CBari::Step1(_us (*img)[256]){
 				max_pat = bari_chk;
 			++bari_total;
 			max_line = i;
-			pre_chk = max_line;
+			
 		}
 	}
 
 
 	if(iGo < 2){
-		tsend.state = R_GO;	
-		tsend.step = MV_2;
+		tsend.state = R_GO_BARI;	
+		tsend.step = MV_0;
 
 		++iGo;
 	}
@@ -139,12 +142,12 @@ TSEND CBari::Step2(_us (*img)[256]){
 	tsend.state = R_WAIT;
 	tsend.step = MV_0;
 	tsend.now = MI_NOW;
-	tsend.size = 3;
+	tsend.size = 4;
 	//////////////////////////////////////////////////////////////////
 	static bool Bari_state = false;
 	static bool Bari_go = false;
 
-	int pre_chk = 0;
+	
 	_us r_temp, g_temp, b_temp;
 	int i = 20;
 	int j = 0;
@@ -181,7 +184,9 @@ TSEND CBari::Step2(_us (*img)[256]){
 						black_chk = 0;
 					}
 					else if(bari_temp == (_Red | _Green)){
+						bari_temp = img[i][j];
 						++yellow_chk;
+						black_chk = 0;
 					}
 				}
 
@@ -200,7 +205,9 @@ TSEND CBari::Step2(_us (*img)[256]){
 						yellow_chk = 0;
 					}
 					else if(bari_temp == 0 || bari_temp == _Blue){
+						bari_temp = img[i][j];
 						++black_chk;
+						yellow_chk = 0;
 					}
 				}
 			}
@@ -214,7 +221,7 @@ TSEND CBari::Step2(_us (*img)[256]){
 				max_pat = bari_chk;
 			++bari_total;
 			max_line = i;
-			pre_chk = max_line;
+			
 		}
 	}
 	if(max_pat >= 2 && max_pat <=4 && bari_total > 30 && max_line > 50)

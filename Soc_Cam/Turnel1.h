@@ -15,6 +15,7 @@ public:
 public:
 	int CheckMid(_us (*img)[256]);
 	TSEND Step1(_us (*img)[256]);
+	TSEND LineChk(_us (*img)[256]);
 	TSEND Step2(_us (*img)[256]);
 public:
 	CTurnel1(void);

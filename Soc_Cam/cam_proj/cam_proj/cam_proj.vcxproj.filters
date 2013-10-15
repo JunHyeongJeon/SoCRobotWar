@@ -13,10 +13,10 @@
     </ClCompile>
     <ClCompile Include="..\..\..\library\CommProc.c" />
     <ClCompile Include="..\..\Hurdle.c">
-      <Filter>0. Mission\1. Hurdle</Filter>
+      <Filter>0. Mission\1. Hurdleㄷㄷ</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Turnel1.c">
-      <Filter>0. Mission\2. Turnel1</Filter>
+      <Filter>0. Mission\2. Turnel1ㄷㄷ</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Stair.c">
       <Filter>0. Mission\3. Stair</Filter>
@@ -50,10 +50,10 @@
       <Filter>0. Mission\5. Golf</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Hurdle.h">
-      <Filter>0. Mission\1. Hurdle</Filter>
+      <Filter>0. Mission\1. Hurdleㄷㄷ</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Turnel1.h">
-      <Filter>0. Mission\2. Turnel1</Filter>
+      <Filter>0. Mission\2. Turnel1ㄷㄷ</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Turnel2.h">
       <Filter>0. Mission\4. Turnel2</Filter>
@@ -76,12 +76,6 @@
     <Filter Include="0. Mission">
       <UniqueIdentifier>{f97f7507-ed04-40e9-a495-3609519b1640}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0. Mission\1. Hurdle">
-      <UniqueIdentifier>{d49da859-cf50-473a-a015-965ce0c74eea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0. Mission\2. Turnel1">
-      <UniqueIdentifier>{fc7cf99e-4dec-4831-9f4e-0f37817c34fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0. Mission\3. Stair">
       <UniqueIdentifier>{95e233dd-b90d-41c9-bd34-c12e32608fa8}</UniqueIdentifier>
     </Filter>
@@ -102,6 +96,12 @@
     </Filter>
     <Filter Include="0. Mission\6. Redㄷㄷ">
       <UniqueIdentifier>{1805608a-1736-4bb3-846e-d34ec4473324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\1. Hurdleㄷㄷ">
+      <UniqueIdentifier>{d49da859-cf50-473a-a015-965ce0c74eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Mission\2. Turnel1ㄷㄷ">
+      <UniqueIdentifier>{fc7cf99e-4dec-4831-9f4e-0f37817c34fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

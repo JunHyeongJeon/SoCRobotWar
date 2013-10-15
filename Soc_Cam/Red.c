@@ -57,7 +57,7 @@ TSEND CRed::Step1(_us (*img)[256]){
 	
 	if(red_line > 7 && max_line > 48){
 		tsend.now = MI_END;
-		tsend.state = R_SITGO;
+		tsend.state = R_CREEP;
 		tsend.step = MV_0;
 	}
 	else if(red_line > 7){
