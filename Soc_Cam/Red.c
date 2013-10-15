@@ -16,10 +16,10 @@ bool CRed::MissionTest(_us (*img)[256]){
 TSEND CRed::Missioning(_us (*img)[256], int now){	
 	switch(now){
 	case 0:
-		Step1(img);
+		m_send = Step1(img);
 		break;
 	case 1:
-		Step2(img);
+		m_send = Step2(img);
 		break;
 	}
 	return m_send;
