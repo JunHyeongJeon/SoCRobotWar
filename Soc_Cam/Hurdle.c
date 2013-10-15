@@ -31,6 +31,7 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 	tsend.state = R_GO;
 	tsend.step = MV_2;
 	tsend.now = MI_NOW;
+	_us r_temp, g_temp, b_temp;
 	int i = 0;
 	_us r_temp, g_temp, b_temp;
 	int j = 0;

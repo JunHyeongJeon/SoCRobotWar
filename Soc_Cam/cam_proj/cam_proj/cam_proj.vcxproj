@@ -72,6 +72,7 @@
     <ClCompile Include="..\..\Stair.c" />
     <ClCompile Include="..\..\Turnel1.c" />
     <ClCompile Include="..\..\Turnel2.c" />
+    <ClCompile Include="Turn.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\library\CommProc.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="..\..\Stair.h" />
     <ClInclude Include="..\..\Turnel1.h" />
     <ClInclude Include="..\..\Turnel2.h" />
+    <ClInclude Include="Turn.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile" />

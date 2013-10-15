@@ -27,7 +27,7 @@ export AS LD CC CPP AR NM STRIP OBJCOPY OBJDUMP RANLIB CFLAGS
 
 PROJ = Soc_Cam
 
-OBJS = Line.o Bari.o Hurdle.o Mission.o Turnel1.o soc_main.o Turnel2.o Stair.o Golf.o Red.o Bari2.o
+OBJS = Line.o Bari.o Hurdle.o Mission.o Turnel1.o soc_main.o Turnel2.o Stair.o Golf.o Red.o Bari2.o Turn.o
 
 
 all: $(PROJ)
