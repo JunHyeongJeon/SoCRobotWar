@@ -2,6 +2,7 @@
 #include <vector>
 #include <math.h>
 #include <list>
+#include <algorithm>
 
 CLine::CLine()
 {
@@ -54,14 +55,14 @@ bool CLine::Gradient(_us (*img)[256],TSEND &tsend)
 	tsend.step = GetGradientStep(fValue);
 	tsend.size = 4;
 
-	printf("[SOC CAM] ---------- [ GRADIENT ] [RESULT = [%f]] ---------- \n",fResult);
+	printf("[SOC CAM] [ GRADIENT ] [RESULT = [%f]] \n",fResult);
 	// --------------------------------------------------------------------------
 	if(fResult < (fCriterion - fFlat))
 	{
 		//위에서 구한 거리 값이 기준 보다 작을경우
 		tsend.state = R_TURNLEFT;
 		tsend.now = (MI_COMP)MI_LINE_NOW;
-		printf("[SOC CAM] ---------- [ GRADIENT ] [R_LEFT] [STEP = [%d]] ---------- \n",tsend.step);
+		printf("[SOC CAM] [ GRADIENT ] [R_LEFT] [STEP = [%d]] \n",tsend.step);
 		return false;
 	}
 	else if(fResult > (fCriterion + fFlat))
@@ -69,14 +70,14 @@ bool CLine::Gradient(_us (*img)[256],TSEND &tsend)
 		//위에서 구한 거리 값이 기준 보다 클경우
 		tsend.state = R_TURNRIGHT;
 		tsend.now = (MI_COMP)MI_LINE_NOW;
-		printf("[SOC CAM] ---------- [ GRADIENT ] [R_RIGHT] [STEP = [%d]] ---------- \n",tsend.step);
+		printf("[SOC CAM] [ GRADIENT ] [R_RIGHT] [STEP = [%d]] \n",tsend.step);
 		return false;
 	}
 	else {
 		//안정권안으로 들어옴
 		tsend.state = R_WAIT;
 		tsend.now = (MI_COMP)MI_LINE_NOW;
-		printf("[SOC CAM] ---------- [ GRADIENT ] [R_WAIT] [SUCCESS] ---------- \n");
+		printf("[SOC CAM] [ GRADIENT ] [R_WAIT] [SUCCESS] \n");
 		return true;
 	}
 }
@@ -91,14 +92,14 @@ bool CLine::Distance(_us (*img)[256],TSEND &tsend)
 	float fValue = fabs(fResult - fCriterion);
 	tsend.step = GetDistanceStep(fValue);
 	tsend.size = 4;
-	printf("[SOC CAM] ---------- [ DISTANCE ] [RESULT = [%f]] ---------- \n",fResult);
+	printf("[SOC CAM] [ DISTANCE ] [RESULT = [%f]] \n",fResult);
 	// --------------------------------------------------------------------------
 	if(fResult < (fCriterion - fFlat))
 	{
 		//위에서 구한 거리 값이 기준 보다 작을경우
 		tsend.state = R_RIGHT;
 		tsend.now = (MI_COMP)MI_LINE_NOW;
-		printf("[SOC CAM] ---------- [ DISTANCE ] [R_RIGHT] [STEP = [%d]] ---------- \n",tsend.step);
+		printf("[SOC CAM] [ DISTANCE ] [R_RIGHT] [STEP = [%d]] \n",tsend.step);
 		return false;
 	}
 	else if(fResult > (fCriterion + fFlat))
@@ -106,7 +107,7 @@ bool CLine::Distance(_us (*img)[256],TSEND &tsend)
 		//위에서 구한 거리 값이 기준 보다 클경우
 		tsend.state = R_LEFT;
 		tsend.now = (MI_COMP)MI_LINE_NOW;
-		printf("[SOC CAM] ---------- [ DISTANCE ] [R_LEFT] [STEP = [%d]] ---------- \n",tsend.step);
+		printf("[SOC CAM] [ DISTANCE ] [R_LEFT] [STEP = [%d]] \n",tsend.step);
 		return false;
 	}
 	else {
@@ -182,7 +183,7 @@ float CLine::GetDistance(_us (*img)[256])
 			_us color = img[y][x];
 			if(color == 0x00)
 			{
-				printf("[DISTANCE] [POINT = [%d] [%d]] \n",x,y);
+				//printf("[DISTANCE] [POINT = [%d] [%d]] \n",x,y);
 				pointList.push_back(point(x,y));
 				break;
 			}
@@ -216,108 +217,88 @@ float CLine::GetDistance(_us (*img)[256])
 	if(pointList.size() == 2)
 	{	
 		float fLength = (pointList[0].y + pointList[1].y) / 2.f;
-		printf("DISTANCE = [%f] \n",fLength);
+		//printf("DISTANCE = [%f] \n",fLength);
 		return fLength;
 	}
 
 	return 0.f;
 }
 
+bool Compare(point p1,point p2)
+{
+	return p1.y > p2.y;
+}
+
 float CLine::GetGradient(_us (*img)[256])
 { 
-	std::vector<LINE> vecLine;
-	std::vector<float> gradList;
-	float fResult = 0.f;
-
+	std::vector<point> vecPoint;
+	std::vector<point> vecResultPoint;
 	//모든 검은색 point를 구한다.
-	for(int x=0;x<180;x+=5)
+	for(int x=5;x<175;x+=1)
 	{
 		bool bFind = false;
-		point p1;
-		point p2;
-
-		for(int y=(120-1);y>=0;y--)
+		for(int y=115;y>=5;y--)
 		{
-			_us color = img[y][x];			
-			if(bFind == false) {
+			_us color = img[y][x];
+
+			if(bFind) {
+				if(color != 0x00) {
+					printf("[POINT] [(%d , %d)] \n",x,y);
+					vecPoint.push_back(point(x,y));
+					break;
+				}
+
+			}
+			else {
 				if(color == 0x00) {
-					p1.x = x;
-					p1.y = y;
 					bFind = true;
 				}
 			}
-			else {
-				if(color != 0x00) {
-					p2.x = x;
-					p2.y = y;
-					vecLine.push_back(LINE(p1,p2));
-					printf("[GRADIENT] [p1(%d,%d)] [p2(%d,%d)] [FL(%d)] \n",p1.x,p1.y,p2.x,p2.y,p1.y - p2.y);
-					break;
-				}
-			}
 		}
 	}
-
- 	for(unsigned int i = 0; i < vecLine.size();i++)
- 	{
- 		if((vecLine[i].p1.y - vecLine[i].p2.y) <= 3 || (vecLine[i].p1.y - vecLine[i].p2.y) >= 30)
- 		{
- 			vecLine.erase(vecLine.begin() + i);
- 			i--;
- 		}
- 	}
-
- 	printf("[ RESULT ] \n");
- 	for(unsigned int i = 0;i< vecLine.size();++i)
- 	{
- 		printf("[GRADIENT] [p1(%d,%d)] [p2(%d,%d)] [FL(%d)] \n",vecLine[i].p1.x,vecLine[i].p1.y,vecLine[i].p2.x,vecLine[i].p2.y,vecLine[i].p1.y - vecLine[i].p2.y);
- 	}
-
-	//모든 기울기를 구함
-	for(unsigned int i=0;i<vecLine.size() - 1;++i)
-	{
-		int nDx = vecLine[i + 1].p2.x - vecLine[i].p2.x;
-		int nDy = vecLine[i + 1].p2.y - vecLine[i].p2.y;
-		nDx == 0 ? nDx = 1 : nDx;
-
-		float fGrad = (float)nDy / nDx;
-		gradList.push_back(fGrad);
-	}
-
-	/*
-	if(gradList.empty() == false) {
-		float fSum = 0.f;
-		for(unsigned int i = 0;i<gradList.size() - 1;++i) {
-			fSum += gradList[i];
-		}
-		//기울기 들의 평균을 구함
-		float fAverage = fSum / gradList.size();
-		printf("[GRADIENT] [AVERAGE = [%f]] \n",fAverage);
-		fResult = fAverage;
-	}
-	*/
-
-	//수정
 	
-	//p2를 기준으로 기울기차이가 많이나는 갑은 제거 하여 2개의 포인터만 남긴다.
-	while(gradList.size() > 2)
+	//중복 되는 점들 제거 
+	int nCurrentY = 0;
+	for(unsigned int i = 0;i < vecPoint.size();++i)
+	{
+		if(nCurrentY != vecPoint[i].y) {
+			nCurrentY = vecPoint[i].y;
+			vecResultPoint.push_back(point(vecPoint[i].x,vecPoint[i].y));
+		}
+	}
+
+	printf("PROCESS DUPLICATE POINT\n");
+	for(unsigned int i = 0;i < vecResultPoint.size();++i)
+	{
+		printf("[POINT] [(%d , %d)] \n",vecResultPoint[i].x,vecResultPoint[i].y);
+	}
+
+	//검색된 포인터가 없거나 1개만 있을경우 0을 반환
+	if(vecResultPoint.size() == 0 || vecResultPoint.size() == 1) {
+		return 0.f;
+	}
+
+	//포인터가 2개가 될때 까지 기울기 차이가 큰값을 제거한다.
+	while(vecResultPoint.size() > 2)
 	{
 		float fSum = 0.f;
-		for(unsigned int i = 0;i<gradList.size() - 1;++i) {
-			fSum += gradList[i];
+		for(unsigned int i = 0;i<vecResultPoint.size() - 1;++i) {
+			//fSum += vecPoint[i].y;
+			float fGrad = (float)(vecResultPoint[i + 1].y - vecResultPoint[i].y)/(vecResultPoint[i + 1].x - vecResultPoint[i].x);
+			fSum += fGrad;
 		}
-		//기울기 들의 평균을 구함  
-		float fAverage = fSum / gradList.size();
-		printf("[GRADIENT] [AVERAGE = [%f]] \n",fAverage);
+
+		//기울기 들의 평균을 구함.
+		float fAverage = fSum / (vecResultPoint.size() - 1);
+		printf("[GRADIENT] [%f] \n",fAverage);
 
 		//평균과 기울기 차가 크게 나는 한 point를 없앤다.
 		float fMax = 0;
 		int nMaxIndex = 0;
-		for(unsigned int i=0;i<gradList.size();++i)
+		for(unsigned int i=0;i<vecResultPoint.size()-1;++i)
 		{
-			float fGrad = gradList[i];
+			float fGrad = (float)(vecResultPoint[i + 1].y - vecResultPoint[i].y)/(vecResultPoint[i + 1].x - vecResultPoint[i].x);
 			float fLength = fabs(fGrad - fAverage);
-
 			if(fLength > fMax)
 			{
 				fMax = fLength;
@@ -325,16 +306,14 @@ float CLine::GetGradient(_us (*img)[256])
 			}
 		}
 
-		gradList.erase(gradList.begin() + nMaxIndex);
+		vecResultPoint.erase(vecResultPoint.begin() + nMaxIndex);
 	}
 
-	//가장 평균과 근사한 2개의 포인터를 이용해 기울기를 구한다.
-	if(gradList.size() == 2)
-	{
-		float fGrad = gradList[0];
-		printf("[GRADIENT] [FINAL RESULT = [%f]] \n",fGrad);
+	//포인터가 2개만 남으면 2개의 기울기를 구한다.
+	if(vecResultPoint.size() == 2) {
+		float fGrad = (float)(vecResultPoint[1].y - vecResultPoint[0].y)/(vecResultPoint[1].x - vecResultPoint[0].x);
 		return fGrad;
 	}
 
-	return fResult;
+	return 0.f;
 }
