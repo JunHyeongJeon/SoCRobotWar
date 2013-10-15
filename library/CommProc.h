@@ -38,8 +38,8 @@ enum M_STATE{
 enum R_STATE{
 	R_WAIT,
 	R_GO,			// 앞으로 걸어가는 일반 동작
-	R_BARI_GO,		// 바리게이트의 앞으로 걸어가는 동작 + 숙이기
-	R_TURNEL_GO,	// 빨간색 터널의 앞으로 걸어가는 동작 + 숙이기
+	R_GO_BARI,		// 바리게이트의 앞으로 걸어가는 동작 + 숙이기
+	R_GO_TURNEL,	// 빨간색 터널의 앞으로 걸어가는 동작 + 숙이기
 	R_LEFT,
 	R_RIGHT,
 	R_TURNLEFT,
