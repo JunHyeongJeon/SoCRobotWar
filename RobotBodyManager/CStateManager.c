@@ -51,9 +51,6 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 	case R_GO_BARI:
 		m_nMotion = MOTION_WALK_BARI;
 		break;
-	case R_GO_TURNEL:
-		m_nMotion = MOTION_WALK_TURNEL;
-		break;
 	case R_LEFT:
 		m_nMotion = MOTION_LEFT;
 		break;

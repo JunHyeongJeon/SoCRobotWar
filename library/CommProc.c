@@ -80,7 +80,6 @@ const char* CCommProc::GetMotionString(MOTION motion)
 {
 	switch(motion)
 	{
-
 	case MOTION_NONE :		return "MOTION_NONE";
 	case MOTION_STAY:		return "MOTION_STAY";
 	case MOTION_WALK_THREE: return "MOTION_WALK_THREE";
