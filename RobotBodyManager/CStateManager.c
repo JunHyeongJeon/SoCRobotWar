@@ -48,6 +48,12 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 		m_nStep = MV_0;
 
 		break;
+	case R_GO_BARI:
+		m_nMotion = MOTION_WALK_BARI;
+		break;
+	case R_GO_TURNEL:
+		m_nMotion = MOTION_WALK_TURNEL;
+		break;
 	case R_LEFT:
 		m_nMotion = MOTION_LEFT;
 		break;
@@ -60,17 +66,14 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 	case R_TURNRIGHT:
 		m_nMotion = MOTION_TURN_RIGHT;
 		break;
+	case R_TURNLEFT90:
+		m_nMotion = MOTION_TURN_LEFT_90;
+		break;
+	case R_TURNRIGHT90:
+		m_nMotion = MOTION_TURN_RIGHT_90;
+		break;
 	case R_SITDOWN:
 		m_nMotion = MOTION_SIT_DOWN;
-		break;
-	case R_LINE:
-		m_nMotion = MOTION_LINE;
-		break;
-	case R_LINE_END:
-		m_nMotion = MOTION_LINE_END;
-		break;
-	case R_HEAD_CENTER:
-		m_nMotion = MOTION_HEAD_CENTER;
 		break;
 	case R_HEAD_LEFT:
 		m_nMotion = MOTION_HEAD_LEFT;
@@ -78,12 +81,19 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 	case R_HEAD_RIGHT:
 		m_nMotion = MOTION_HEAD_RIGHT;
 		break;
-	case R_TURNLEFT90:
-		m_nMotion = MOTION_TURN_LEFT_90;
+	case R_HEAD_CENTER:
+		m_nMotion = MOTION_HEAD_CENTER;
 		break;
-	case R_TURNRIGHT90:
-		m_nMotion = MOTION_TURN_RIGHT_90;
+	case R_LINE:
+		m_nMotion = MOTION_LINE;
 		break;
+	case R_LINE_END:
+		m_nMotion = MOTION_LINE_END;
+		break;
+	case R_CREEP:
+		m_nMotion = MOTION_CREEP;
+		break;
+	
 	default:
 		m_nMotion = MOTION_NONE;
 		break;

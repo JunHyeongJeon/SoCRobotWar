@@ -53,6 +53,7 @@ enum R_STATE{
 	R_HEAD_CENTER,
 	R_LINE,
 	R_LINE_END,
+	R_CREEP,
 };
 
 enum MV_STEP{

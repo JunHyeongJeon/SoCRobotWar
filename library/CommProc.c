@@ -86,7 +86,7 @@ const char* CCommProc::GetMotionString(MOTION motion)
 	case MOTION_WALK_THREE: return "MOTION_WALK_THREE";
 	case MOTION_WALK_TWO:	return "MOTION_WALK_TWO";
 	case MOTION_WALK_ONE:	return "MOTION_WALK_ONE";
-	case MOTION_CRWAL:		return "MOTION_CRWAL";
+	case MOTION_CREEP:		return "MOTION_CREEP";
 	case MOTION_SIT_DOWN:	return "MOTION_SIT_DOWN";
 	case MOTION_UP_STAIR:	return "MOTION_UP_STAIR";		
 	default:				return "NULL";
