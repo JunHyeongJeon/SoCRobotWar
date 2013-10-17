@@ -26,7 +26,7 @@ void CManager::SetPriOrderList()
 {
 
 // 	m_priOrderList.push(M_BARI1);
-// 	m_priOrderList.push(M_HURDLE);
+ 	m_priOrderList.push(M_HURDLE);
 
 // 	m_priOrderList.push(M_EDGE);
 // 	m_priOrderList.push(M_TURNEL1);
@@ -37,7 +37,7 @@ void CManager::SetPriOrderList()
 // 	m_priOrderList.push(M_BARI2);
 
 	//임시 테스트용
-	m_priOrderList.push(M_ALIGN_CENTER);
+	//m_priOrderList.push(M_ALIGN_CENTER);
 	//m_priOrderList.push(M_TURNEL1);
 }
 
@@ -169,7 +169,6 @@ void CManager::SendMsgRobot(R_STATE motion, MV_STEP motion_cnt)
 
 void CManager::ReceiveMsg(COMM_TYPE commType)
 {
-	PIPE_PROTOCOL protocol = PP_NONE;
 	int size;
 
 	size = (commType == COMM_TYPE_CAM_TO_MGR) ? LEN_RECV_CAM : LEN_RECV_ROBOT;

@@ -37,8 +37,10 @@ enum M_STATE{
 
 enum R_STATE{
 	R_WAIT,
+	R_STAND,
 	R_GO,			// 앞으로 걸어가는 일반 동작
-	R_GO_BARI,		// 바리게이트의 앞으로 걸어가는 동작 + 숙이기
+	R_GO_BARI,		// 걸어가는 동작 + 숙이기
+	R_GO_RUN,		// 잰발로 빨리 걸어가기 
 	R_LEFT,
 	R_RIGHT,
 	R_TURNLEFT,
@@ -53,6 +55,8 @@ enum R_STATE{
 	R_LINE,
 	R_LINE_END,
 	R_CREEP,
+	R_LINE_FRONT,
+	R_HURDLE,
 };
 
 enum MV_STEP{
@@ -102,7 +106,7 @@ enum PIPE_PROTOCOL {
 const float c_fStateTime[] = 
 {
 	1.5,		// MOTION_STAY
-	4.4,		// MOTION_WALK_ONE
+	4.7,		// MOTION_WALK_ONE
 	4.6,		// MOTION_WALK_BARI
 	0.5,		// MOTION_TURN_LEFT
 	0.5,		// MOTION_TURN_RIGHT
@@ -116,7 +120,10 @@ const float c_fStateTime[] =
 	3.6,		// MOTION_TURN_LEFT_90
 	3.6,		// MOTION_TURN_RIGHT_90
 	1.5,		// MOTION_SIT_DOWN
-	25.8,		// MOTION_CREEP
+	27.1,		// MOTION_CREEP
+	0.8,		// MOTION_LINE_FRONT
+	3.0,		// MOTION_RUN
+	11.9,		// MOTION_HURDLE
 
 	0.8,		//STATE_HEAD_RIGHT_THIRTY
 	0.8,		//STATE_HEAD_LEFT_SIXTY
@@ -148,6 +155,9 @@ enum MOTION {
 	MOTION_TURN_RIGHT_90,	// 13
 	MOTION_SIT_DOWN,		// 14
 	MOTION_CREEP,			// 15
+	MOTION_LINE_FRONT,		// 16
+	MOTION_RUN,				// 17
+	MOTION_HURDLE,			// 18
 
 	MOTION_UP_STAIR,
 	MOTION_WALK_THREE,

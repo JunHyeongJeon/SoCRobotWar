@@ -49,13 +49,13 @@ TSEND CRed::Step1(_us (*img)[256]){
 			if(r_temp == _Red && g_temp == 0 && b_temp == 0)
 				++red_chk;
 		}
-		if(red_chk > 30){
+		if(red_chk > 100){
 			max_line = i;
 			++red_line;
 		}
 	}
 	
-	if(red_line > 7 && max_line > 48){
+	if(red_line > 7 && max_line > 111){
 		tsend.now = MI_END;
 		tsend.state = R_CREEP;
 		tsend.step = MV_0;

@@ -48,6 +48,9 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 		m_nStep = MV_0;
 
 		break;
+	case R_STAND:
+		m_nMotion = MOTION_STAY;
+		break;
 	case R_GO_BARI:
 		m_nMotion = MOTION_WALK_BARI;
 		break;
@@ -89,6 +92,15 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 		break;
 	case R_CREEP:
 		m_nMotion = MOTION_CREEP;
+		break;
+	case R_LINE_FRONT:
+		m_nMotion = MOTION_LINE_FRONT;
+		break;
+	case R_GO_RUN:
+		m_nMotion = MOTION_RUN;
+		break;
+	case R_HURDLE:
+		m_nMotion = MOTION_HURDLE;
 		break;
 	
 	default:

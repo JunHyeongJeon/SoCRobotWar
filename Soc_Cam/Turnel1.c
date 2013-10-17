@@ -5,7 +5,8 @@ iDir(0),
 m_iLeft(-1),
 m_iRight(-1),
 m_bLeft(false),
-m_bRight(false)
+m_bRight(false),
+m_iLine(0)
 {
 }
 CTurnel1::~CTurnel1(void)
@@ -94,9 +95,6 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 		tsend.now = MI_NOW;
 		tsend.step = MV_0;
 		if(m_bLeft && m_bRight){
-			printf("-------------------------------------------------------------\n");
-			printf("\t%d\t\t%d\n", m_iLeft, m_iRight);
-			printf("-------------------------------------------------------------\n");
 			if(m_iLeft - m_iRight > 9)
 				tsend.state = R_LEFT;
 			else if(m_iLeft - m_iRight < -9)
@@ -113,9 +111,6 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 		else{
 			tsend.state = R_TURNRIGHT90;
 			tsend.now = MI_NEXT;
-			printf("-------------------------------------------------------------\n");
-			printf("failfailfailfailfailfailfailfailfailfailfailfailfailfailfailfail\n");
-			printf("-------------------------------------------------------------\n");
 		}
 	}
 	++iDir;
@@ -129,13 +124,54 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 
 	return tsend;
 }
+void CTurnel1::LineChk2(_us (*img)[256]){
+	
+	// 기준 값 ------------------------------------------------------------------
+	const float fCriterion = 0; // 기준이 되는 기울기 값
+	const float fFlat = 0.07; // 허용되는 기준과의 오차 범위
+	// step 설정 ----------------------------------------------------------------
+	float fResult = GetDegree(img);
+	float fValue = fabs(fResult - fCriterion);
+	m_temp.step = GetDegreeStep(fValue);
+	m_temp.size = 4;
+	m_temp.now = MI_NOW;
+	if(m_temp.step > MV_3)
+		m_temp.step = MV_3;
 
+	// --------------------------------------------------------------------------
+	if(fResult < (fCriterion - fFlat))
+		m_temp.state = R_TURNLEFT;
+	else if(fResult > (fCriterion + fFlat))
+		m_temp.state = R_TURNRIGHT;		
+	else {
+		//안정권안으로 들어옴
+		m_temp.state = R_WAIT;
+		m_temp.step = MV_0;
+		m_temp.now = MI_NEXT;
+	}
+	////////////////////////////////////////////////
+
+}
 TSEND CTurnel1::LineChk(_us (*img)[256]){
 	TSEND tsend;
 	tsend.state = R_WAIT;
 	tsend.step = MV_0;
 	tsend.now = MI_NOW;
 	tsend.size = 4;
+	if(m_iLine == 0){
+		tsend.state = R_LINE_FRONT;
+	}
+	else if(m_iLine == 1){
+		LineChk2(img);
+		tsend.state = R_STAND;
+	}
+	else if(m_iLine == 2){
+		tsend = m_temp;
+	}
+	++m_iLine;
+	if(m_iLine > 2)
+		m_iLine = 0;
+	
 
 	return tsend;
 }

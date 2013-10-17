@@ -1,34 +1,9 @@
 #pragma once
 #include "mission.h"
 
-struct point
-{
-	int x;
-	int y;
 
-	point(int _x,int _y) 
-	{
-		x = _x;
-		y = _y;
-	}
 
-	point()
-	{
 
-	}
-};
-
-struct LINE
-{
-	point p1;
-	point p2;
-
-	LINE(point _p1,point _p2)
-	{
-		p1 = _p1;
-		p2 = _p2;
-	};
-};
 
 class CLine :
 	public CMission

@@ -10,6 +10,8 @@ public:		//virtualÇÔ¼öµé
 	virtual bool MissionTest(_us (*img)[256]);
 	virtual TSEND Missioning(_us (*img)[256], int now);
 public:
+	float GetDegree(_us (*img)[256]);
+	MV_STEP GetDegreeStep(float fValue);
 	void SetState(M_STATE state){m_state = state;}
 	M_STATE GetState(){return m_state;}
 public:
