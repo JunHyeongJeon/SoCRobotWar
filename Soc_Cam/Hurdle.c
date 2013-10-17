@@ -87,7 +87,7 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 		tsend.now = MI_NOW;
 		tsend.step = MV_0;
 		tsend.state = R_GO_BARI;
-		if(first_line > 70){
+		if(first_line > 65){
 			bChk = true;
 			bHurdle = false;
 		}		

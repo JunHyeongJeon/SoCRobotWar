@@ -52,7 +52,7 @@ TSEND CTurn::Step1(_us (*img)[256]){
 			if(black_chk2 > 9)
 				++black_con;
 		}
-		if(black_chk > 50 && black_con > 3)
+		if(black_chk > 70 && black_con > 3)
 			++black_line;
 		if(black_line > 3){
 			first_line = i- 3;
@@ -61,9 +61,9 @@ TSEND CTurn::Step1(_us (*img)[256]){
 
 	}
 
-	if(i > 80){
+	if(i > 60){
 		tsend.state = R_TURNLEFT90;
 		tsend.step = MV_0;
-		tsend.now = MI_NEXT;
+		tsend.now = MI_END;
 	}
 }

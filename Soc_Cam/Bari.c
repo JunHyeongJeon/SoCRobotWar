@@ -129,8 +129,8 @@ TSEND CBari::Step1(_us (*img)[256]){
 			tsend.now = MI_NEXT;
 		}
 		else if(max_pat > 4 && bari_total > 10){
-			tsend.state = R_GO;
-			tsend.step = MV_2;
+			tsend.state = R_GO_BARI;
+			tsend.step = MV_0;
 			tsend.now = MI_NOW;
 		}
 	}
