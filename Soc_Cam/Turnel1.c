@@ -6,7 +6,9 @@ m_iLeft(-1),
 m_iRight(-1),
 m_bLeft(false),
 m_bRight(false),
-m_iLine(0)
+m_iLine(0),
+m_bCenter(false),
+m_bGo(false)
 {
 }
 CTurnel1::~CTurnel1(void)
@@ -40,7 +42,7 @@ int CTurnel1::CheckMid(_us (*img)[256]){
 	///////////////왼쪽 카메라
 	for(; i < 180; ++i){
 		blue_chk = 0;
-		for(j = 40; j < 120; ++j)
+		for(j = 10; j < 120; ++j)
 		{
 			r_temp = img[j][i] & _Red;
 			g_temp = img[j][i] & _Green;
@@ -63,6 +65,108 @@ int CTurnel1::CheckMid(_us (*img)[256]){
 	return -1;
 }
 
+TSEND CTurnel1::ChkCenter(_us (*img)[256]){
+	TSEND tsend;
+	tsend.step = MV_0;
+	tsend.state = R_TURNRIGHT90;
+	tsend.now = MI_NEXT;
+	tsend.size = 4;
+
+	_us r_temp, g_temp, b_temp;
+	int i = 0;
+	int j = 0;
+	int max_line = 0;
+
+	int blue_chk = 0;
+	int blue_line = 0;	
+	int iLeft = -1;
+	int iRight = -1;	
+	///////////////왼쪽 카메라
+	for(i = 0; i < 30; ++i){
+		blue_chk = 0;
+		for(j = 0; j < 120; ++j)
+		{
+			r_temp = img[j][i] & _Red;
+			g_temp = img[j][i] & _Green;
+			b_temp = img[j][i] & _Blue;
+			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
+				++blue_chk;
+			}			
+		}
+		if(blue_chk > 50)
+			++blue_line;
+		else
+			blue_line = 0;
+		if(blue_line > 2){
+			iLeft = i - 2;
+			break;
+		}
+	}
+	blue_line = 0;
+	for(i = 160; i < 180; ++i){
+		blue_chk = 0;
+		for(j = 0; j < 120; ++j)
+		{
+			r_temp = img[j][i] & _Red;
+			g_temp = img[j][i] & _Green;
+			b_temp = img[j][i] & _Blue;
+			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
+				++blue_chk;
+			}			
+		}
+		if(blue_chk > 50)
+			++blue_line;
+		else
+			blue_line = 0;
+		if(blue_line > 2){
+			iRight = i;
+			break;
+		}
+	}
+	if(iLeft != -1 && iRight != -1){
+		if(iLeft < 7 && iRight > 173){
+			m_bCenter = true;
+			return tsend;
+		}
+
+	}
+	if(iLeft != -1 && iRight != -1){
+		if(iLeft < 7 && iRight > 173){
+			m_bCenter = true;
+			return tsend;
+		}
+
+	}
+	blue_line = 0;
+	for(i = 0; i < 180; ++i){
+		blue_chk = 0;
+		for(j = 0; j < 50; ++j)
+		{
+			r_temp = img[i][j] & _Red;
+			g_temp = img[i][j] & _Green;
+			b_temp = img[i][j] & _Blue;
+			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
+				++blue_chk;
+			}			
+		}
+		if(blue_chk > 50){
+			++blue_line;
+			max_line = i;
+		}
+	}
+	m_bCenter = false;
+	if(blue_line > 2 && max_line > 15){
+		tsend.now = MI_NOW;
+		tsend.state = R_GO;
+		tsend.step = MV_0;
+		m_bGo = true;
+		return tsend;
+	}
+	m_bGo = false;
+	
+	return tsend;
+
+}
 TSEND CTurnel1::Step1(_us (*img)[256]){
 	TSEND tsend;
 	tsend.state = R_WAIT;
@@ -92,10 +196,22 @@ TSEND CTurnel1::Step1(_us (*img)[256]){
 	else if(iDir == 3){
 		
 		///////////////오른쪽 카메라 끝
+		tsend = ChkCenter(img);
+		if(m_bCenter || m_bGo){
+			m_bCenter = false;
+			m_bLeft = false;
+			m_bRight = false;
+			m_bGo = false;
+			m_iLeft = -1;
+			m_iRight = -1;
+			iDir = 0;
+			return tsend;
+		}
 		tsend.now = MI_NOW;
 		tsend.step = MV_0;
+
 		if(m_bLeft && m_bRight){
-			if(m_iLeft - m_iRight > 9)
+			if(m_iLeft - m_iRight > 4)
 				tsend.state = R_LEFT;
 			else if(m_iLeft - m_iRight < -9)
 				tsend.state = R_RIGHT;

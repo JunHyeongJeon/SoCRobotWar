@@ -123,7 +123,7 @@ TSEND CBari::Step1(_us (*img)[256]){
 	else{
 		tsend.state = R_WAIT;
 
-		if(max_pat >= 2 && max_pat <=4 && bari_total > 10 && max_line > 80){
+		if(max_pat >= 2 && max_pat <=4 && bari_total > 10 && max_line > 75){
 			tsend.state = R_SITDOWN;
 			tsend.step = MV_0;
 			tsend.now = MI_NEXT;
