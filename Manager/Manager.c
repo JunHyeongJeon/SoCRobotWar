@@ -24,8 +24,22 @@ CManager::~CManager()
 
 void CManager::SetPriOrderList()
 {
+	int inum = 0;
+	int iList = 0;
+	FILE *fp = fopen("OrderList.txt", "r");
+	if( fp == NULL){
+		printf("ERROR\n");
+	}
+	inum = fgetc(fp);
+	iList = fgetc(fp);
+	for(int i = 0; i < inum; ++i){
+		iList = fgetc(fp);
+		m_priOrderList.push((M_STATE)iList);
+		iList = fgetc(fp);
+	}
 
- 	m_priOrderList.push(M_BARI1);
+	fclose(fp);
+ 	/*m_priOrderList.push(M_BARI1);*/
 // 	m_priOrderList.push(M_HURDLE);
 
 // 	m_priOrderList.push(M_EDGE);
