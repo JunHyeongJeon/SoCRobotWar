@@ -21,6 +21,9 @@ public:
 	bool Gradient(_us (*img)[256],TSEND &tsend);
 	bool Distance(_us (*img)[256],TSEND &tsend);
 
+	std::vector<LINE> GetPoint(_us (*img)[256]);
+	void doStandardiZation(std::vector<LINE>& vecLine,int nPointCount);
+
 public:
 	TSEND Step1(_us (*img)[256]);
 public:
