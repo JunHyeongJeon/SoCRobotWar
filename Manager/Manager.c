@@ -24,6 +24,7 @@ CManager::~CManager()
 
 void CManager::SetPriOrderList()
 {
+	/*
 	int inum = 0;
 	int iList = 0;
 	FILE *fp = fopen("OrderList.txt", "r");
@@ -39,7 +40,9 @@ void CManager::SetPriOrderList()
 	}
 
 	fclose(fp);
- 	/*m_priOrderList.push(M_BARI1);*/
+	*/
+
+// 	m_priOrderList.push(M_BARI1);
 // 	m_priOrderList.push(M_HURDLE);
 
 // 	m_priOrderList.push(M_EDGE);
@@ -51,7 +54,7 @@ void CManager::SetPriOrderList()
 // 	m_priOrderList.push(M_BARI2);
 
 	//임시 테스트용
-	//m_priOrderList.push(M_ALIGN_CENTER);
+	m_priOrderList.push(M_ALIGN_CENTER);
 	//m_priOrderList.push(M_TURNEL1);
 // 
 // 	m_priOrderList.push(M_RED);

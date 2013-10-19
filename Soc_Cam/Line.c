@@ -140,7 +140,7 @@ std::vector<LINE> CLine::GetPoint(_us (*img)[256])
 			if(bFind) {
 				if(color != 0x00) {
 					p2 = point(x,y);
-					printf("[LINE] [(%d , %d)] [(%d , %d)] [%d] \n",p1.x,p1.y,p2.x,p2.y,p1.y - p2.y);
+					//printf("[LINE] [(%d , %d)] [(%d , %d)] [%d] \n",p1.x,p1.y,p2.x,p2.y,p1.y - p2.y);
 					vecLine.push_back(LINE(p1,p2));
 					break;
 				}
@@ -164,19 +164,21 @@ std::vector<LINE> CLine::GetPoint(_us (*img)[256])
 		}
 	}
 
-	printf("PROCESS DUPLICATE POINT\n");
+	//printf("PROCESS DUPLICATE POINT\n");
 	for(unsigned int i = 0;i < vecResultLine.size();++i)
 	{
 		point p1 = vecResultLine[i].p1;
 		point p2 = vecResultLine[i].p2;
-		printf("[LINE] [(%d , %d)] [(%d , %d)] [%d] \n",p1.x,p1.y,p2.x,p2.y,p1.y - p2.y);
+		//printf("[LINE] [(%d , %d)] [(%d , %d)] [%d] \n",p1.x,p1.y,p2.x,p2.y,p1.y - p2.y);
 	}
+
+	return vecResultLine;
 }
 
-void CLine::doStandardiZation(std::vector<LINE>& vecLine,int nPointCOunt)
+void CLine::doStandardiZation(std::vector<LINE>& vecLine,int nPointCount)
 {
-	//포인터가 nPointCount만큼 남을때 까지 기울기 차이가 큰값을 제거한다.	
-	while(vecLine.size() > nPointCOunt)
+	//포인터가 nPointCount만큼 남을때 까지 기울기 차이가 큰값을 제거한다.
+	while(vecLine.size() > nPointCount)
 	{
 		float fSum = 0.f;
 		for(unsigned int i = 0;i<vecLine.size() - 1;++i) {
@@ -186,7 +188,7 @@ void CLine::doStandardiZation(std::vector<LINE>& vecLine,int nPointCOunt)
 
 		//기울기 들의 평균을 구함.
 		float fAverage = fSum / (vecLine.size() - 1);
-		printf("[GRADIENT] [%f] \n",fAverage);
+		//printf("[GRADIENT] [%f] \n",fAverage);
 
 		//평균과 기울기 차가 크게 나는 한 point를 없앤다.
 		float fMax = 0;
@@ -208,6 +210,7 @@ void CLine::doStandardiZation(std::vector<LINE>& vecLine,int nPointCOunt)
 
 float CLine::GetDistance(_us (*img)[256])
 {
+	printf(" DISTANCE \n");
 	std::vector<LINE> vecLine = GetPoint(img);
 
 	//검색된 포인터가 없거나 1개만 있을경우 0을 반환
@@ -219,6 +222,7 @@ float CLine::GetDistance(_us (*img)[256])
 		return vecLine[0].p1.y;
 	}
 
+	printf(" DISTANCE STANDARD ZATION \n");
 	doStandardiZation(vecLine,2);
 
 	//포인터가 2개만 남으면 2개의 평균 높이를 구한다.
@@ -226,6 +230,8 @@ float CLine::GetDistance(_us (*img)[256])
 		float fLength = (vecLine[0].p1.y + vecLine[1].p1.y) / 2.f;
 		return fLength;
 	}
+
+	printf(" DISTANCE RETURN 0 \n");
 	return 0.f;
 }
 
