@@ -78,9 +78,9 @@ TSEND CTurnel1::ChkCenter(_us (*img)[256]){
 	int max_line = 0;
 
 	int blue_chk = 0;
-	int blue_line = 0;	
+	int blue_line = 0;
 	int iLeft = -1;
-	int iRight = -1;	
+	int iRight = -1;
 	///////////////왼쪽 카메라
 	for(i = 0; i < 30; ++i){
 		blue_chk = 0;
@@ -91,7 +91,7 @@ TSEND CTurnel1::ChkCenter(_us (*img)[256]){
 			b_temp = img[j][i] & _Blue;
 			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
 				++blue_chk;
-			}			
+			}
 		}
 		if(blue_chk > 50)
 			++blue_line;
@@ -112,7 +112,7 @@ TSEND CTurnel1::ChkCenter(_us (*img)[256]){
 			b_temp = img[j][i] & _Blue;
 			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
 				++blue_chk;
-			}			
+			}
 		}
 		if(blue_chk > 50)
 			++blue_line;
@@ -147,7 +147,7 @@ TSEND CTurnel1::ChkCenter(_us (*img)[256]){
 			b_temp = img[i][j] & _Blue;
 			if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
 				++blue_chk;
-			}			
+			}
 		}
 		if(blue_chk > 50){
 			++blue_line;
@@ -253,12 +253,11 @@ void CTurnel1::LineChk2(_us (*img)[256]){
 	m_temp.now = MI_NOW;
 	if(m_temp.step > MV_3)
 		m_temp.step = MV_3;
-
 	// --------------------------------------------------------------------------
 	if(fResult < (fCriterion - fFlat))
 		m_temp.state = R_TURNLEFT;
 	else if(fResult > (fCriterion + fFlat))
-		m_temp.state = R_TURNRIGHT;		
+		m_temp.state = R_TURNRIGHT;
 	else {
 		//안정권안으로 들어옴
 		m_temp.state = R_WAIT;
@@ -304,10 +303,10 @@ TSEND CTurnel1::Step2(_us (*img)[256]){
 	int j = 0;
 
 	int blue_chk = 0;
-	int blue_line = 0;	
-	int iRight = 0;	
+	int blue_line = 0;
+	int iRight = 0;
 	bool bRight = false;
-	static bool bChk = false;	
+	static bool bChk = false;
 	///////////////왼쪽 카메라
 	for(; i < 180; ++i){
 		blue_chk = 0;
@@ -339,7 +338,6 @@ TSEND CTurnel1::Step2(_us (*img)[256]){
 		tsend.state = R_TURNLEFT90;
 		tsend.step = MV_0;
 		tsend.now = MI_END;
-
 	}
 	////////////////////////////////////
 	return tsend;
