@@ -84,14 +84,14 @@ bool CLine::Distance(_us (*img)[256],TSEND &tsend)
 	tsend.step = GetDistanceStep(fValue); tsend.size = 4;
 	printf("[SOC CAM] [ DISTANCE ] [RESULT = [%f]] \n",fResult);
 
-	if(fResult < (GRADIENT_SAFETY_CRITERION - DISTANCE_SAFETY_ZONE))
+	if(fResult < (DISTANCE_SAFETY_CRITERION - DISTANCE_SAFETY_ZONE))
 	{
 		//위에서 구한 거리 값이 기준 보다 작을경우
 		tsend.state = R_RIGHT; tsend.now = (MI_COMP)MI_LINE_NOW;
 		printf("[SOC CAM] [ DISTANCE ] [R_RIGHT] [STEP = [%d]] \n",tsend.step);
 		return false;
 	}
-	else if(fResult > (GRADIENT_SAFETY_CRITERION + DISTANCE_SAFETY_ZONE))
+	else if(fResult > (DISTANCE_SAFETY_CRITERION + DISTANCE_SAFETY_ZONE))
 	{
 		//위에서 구한 거리 값이 기준 보다 클경우
 		tsend.state = R_LEFT; tsend.now = (MI_COMP)MI_LINE_NOW;
@@ -210,7 +210,6 @@ void CLine::doStandardiZation(std::vector<LINE>& vecLine,int nPointCount)
 
 float CLine::GetDistance(_us (*img)[256])
 {
-	printf(" DISTANCE \n");
 	std::vector<LINE> vecLine = GetPoint(img);
 
 	//검색된 포인터가 없거나 1개만 있을경우 0을 반환
@@ -222,7 +221,6 @@ float CLine::GetDistance(_us (*img)[256])
 		return vecLine[0].p1.y;
 	}
 
-	printf(" DISTANCE STANDARD ZATION \n");
 	doStandardiZation(vecLine,2);
 
 	//포인터가 2개만 남으면 2개의 평균 높이를 구한다.
