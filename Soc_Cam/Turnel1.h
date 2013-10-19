@@ -11,10 +11,13 @@ private:
 	bool m_bLeft;
 	bool m_bRight;
 	TSEND m_temp;
+	bool m_bCenter;
+	bool m_bGo;
 public:
 	virtual bool MissionTest(_us (*img)[256]);
 	virtual TSEND Missioning(_us (*img)[256], int now);
 public:
+	TSEND ChkCenter(_us (*img)[256]);
 	int CheckMid(_us (*img)[256]);
 	TSEND Step1(_us (*img)[256]);
 	TSEND LineChk(_us (*img)[256]);

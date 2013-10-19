@@ -25,20 +25,24 @@ CManager::~CManager()
 void CManager::SetPriOrderList()
 {
 
-// 	m_priOrderList.push(M_BARI1);
- 	m_priOrderList.push(M_HURDLE);
+ 	m_priOrderList.push(M_BARI1);
+// 	m_priOrderList.push(M_HURDLE);
 
 // 	m_priOrderList.push(M_EDGE);
 // 	m_priOrderList.push(M_TURNEL1);
 // 	m_priOrderList.push(M_STAIR);
 // 	m_priOrderList.push(M_TURNEL2);
 // 	m_priOrderList.push(M_GOLF);
-// 	m_priOrderList.push(M_RED);
+ 	/*m_priOrderList.push(M_RED);*/
 // 	m_priOrderList.push(M_BARI2);
 
 	//임시 테스트용
 	//m_priOrderList.push(M_ALIGN_CENTER);
 	//m_priOrderList.push(M_TURNEL1);
+// 
+// 	m_priOrderList.push(M_RED);
+	/*m_priOrderList.push(M_TURNEL1);*/
+
 }
 
 void CManager::Process()
@@ -51,8 +55,8 @@ void CManager::Process()
 		m_bLineCheck = true;
 	}
 
-	printf("\n\n**********     %s     **********\n", 
-		m_pCommProc->GetMStateString(m_eCurrentStep));
+	//TKPPprintf("\n\n**********     %s     **********\n", 
+	//TKPP	m_pCommProc->GetMStateString(m_eCurrentStep));
 
 	if(m_bLineCheck == false)
 	{

@@ -38,16 +38,14 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 	int blue_line2 = 0;
 	int blue_chk = 0;
 	int blue_chk2 = 0;
-	int white_chk = 0;
-	int white_line = 0;
 	int first_line = 0;
 	bool bHurdle = false;
-	bool bChk = false;
+	static bool bChk = false;
+	bool bWhite = false;
 	
 	if(!bChk){
-		for(i = 40; i < 120; ++i){
+		for(i = 0; i < 120; ++i){
 			blue_chk = 0;
-			white_chk = 0;
 			blue_chk2 = 0;
 			for(j = 0; j < 180; ++j)
 			{
@@ -55,25 +53,22 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 				g_temp = img[i][j] & _Green;
 				b_temp = img[i][j] & _Blue;
 				if(r_temp == 0 && g_temp == 0 && b_temp == _Blue){
-					if(white_line < 3){
-						++blue_chk;
-						
+					if(!bWhite){
+						++blue_chk;						
 					}
 					else
 						++blue_chk2;
 				}
-				else if(img[j][i] == 1 && blue_line > 2){
-					++white_chk;
-				}
 			}
-			if(blue_chk > 80){
+			if(blue_chk > 55){
 				++blue_line;
-				first_line = i - 2;
+				first_line = i - 2;		
 			}
-			if(white_chk > 80){
-				++white_line;
+			if(blue_line > 2 && !bWhite){
+				bWhite = true;
+				i += 3;
 			}
-			if(blue_chk2 > 80){
+			if(blue_chk2 > 50){
 				++blue_line2;
 			}
 			if(blue_line2 > 1){
@@ -87,7 +82,7 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 		tsend.now = MI_NOW;
 		tsend.step = MV_0;
 		tsend.state = R_GO_BARI;
-		if(first_line > 65){
+		if(first_line > 35){
 			bChk = true;
 			bHurdle = false;
 		}		
@@ -99,7 +94,7 @@ TSEND CHurdle::Step1(_us (*img)[256]){
 			tsend.step = MV_0;
 			++m_iChk;
 		}
-		else if(m_iChk < 3){
+		else if(m_iChk < 2){
 			tsend.now = MI_NOW;
 			tsend.state = R_GO_RUN;
 			tsend.step = MV_0;

@@ -27,7 +27,7 @@ TSEND CRed::Missioning(_us (*img)[256], int now){
 TSEND CRed::Step1(_us (*img)[256]){
 	TSEND tsend;
 	tsend.state = R_GO;
-	tsend.step = MV_2;
+	tsend.step = MV_0;
 	tsend.now = MI_NOW;
 	//////////////////////////////////////////////////
 	_us r_temp, g_temp, b_temp;
@@ -55,7 +55,7 @@ TSEND CRed::Step1(_us (*img)[256]){
 		}
 	}
 	
-	if(red_line > 7 && max_line > 111){
+	if(red_line > 7 && max_line > 95){
 		tsend.now = MI_END;
 		tsend.state = R_CREEP;
 		tsend.step = MV_0;
