@@ -102,6 +102,9 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 	case R_HURDLE:
 		m_nMotion = MOTION_HURDLE;
 		break;
+	case R_SHORT_WALK:
+		m_nMotion = MOTION_SHORT_WALK;
+		break;
 	
 	default:
 		m_nMotion = MOTION_NONE;
