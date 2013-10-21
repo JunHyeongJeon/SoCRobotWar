@@ -131,7 +131,7 @@ const float c_fStateTime[] =
 	11.9,		// 20. MOTION_HURDLE
 	14.5,		// 21. MOTION_STAIR_UP
 	10.7,		// 22. MOTION_STAIR_DOWN
-	1.4			// 23. MOTION_SHORT_WALK
+	1.6			// 23. MOTION_SHORT_WALK
 
 };
 
