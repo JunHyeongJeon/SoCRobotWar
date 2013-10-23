@@ -56,6 +56,7 @@ const char* CCommProc::GetMStateString(M_STATE state)
 	case M_EDGE:			return "M_EDGE";
 	case M_ALIGN_CENTER:	return "M_ALIGN_CENTER";
 	case M_HURDLE:			return "M_HURDEL";
+	case M_TURN:			return "M_TURN";
 	default:				return "NULL";
 	}
 }

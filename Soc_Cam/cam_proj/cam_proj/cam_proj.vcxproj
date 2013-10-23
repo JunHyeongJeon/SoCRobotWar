@@ -70,9 +70,9 @@
     <ClCompile Include="..\..\Red.c" />
     <ClCompile Include="..\..\soc_main.c" />
     <ClCompile Include="..\..\Stair.c" />
+    <ClCompile Include="..\..\Turn.c" />
     <ClCompile Include="..\..\Turnel1.c" />
     <ClCompile Include="..\..\Turnel2.c" />
-    <ClCompile Include="Turn.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\library\CommProc.h" />
@@ -86,9 +86,9 @@
     <ClInclude Include="..\..\MyHeader.h" />
     <ClInclude Include="..\..\Red.h" />
     <ClInclude Include="..\..\Stair.h" />
+    <ClInclude Include="..\..\Turn.h" />
     <ClInclude Include="..\..\Turnel1.h" />
     <ClInclude Include="..\..\Turnel2.h" />
-    <ClInclude Include="Turn.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile" />

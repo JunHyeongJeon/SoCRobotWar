@@ -39,13 +39,13 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 		m_nMotion = MOTION_NONE;
 		break;
 	case R_GO:
-
-		//걸어 가는 상태는 Step에 따라서 다른 모션으로 예외 처리
-		if(nStep == MV_0) m_nMotion = MOTION_WALK_ONE;
-		else if(nStep == MV_1) m_nMotion = MOTION_WALK_ONE;
-		else if(nStep == MV_2) m_nMotion = MOTION_WALK_ONE;
-		//Step은 0으로 설정
-		m_nStep = MV_0;
+		m_nMotion = MOTION_WALK_ONE;
+// 		//걸어 가는 상태는 Step에 따라서 다른 모션으로 예외 처리
+// 		if(nStep == MV_0) m_nMotion = MOTION_WALK_ONE;
+// 		else if(nStep == MV_1) m_nMotion = MOTION_WALK_TWO;
+// 		else if(nStep == MV_2) m_nMotion = MOTION_WALK_THREE;
+// 		//Step은 0으로 설정
+// 		m_nStep = MV_0;
 
 		break;
 	case R_STAND:
@@ -93,8 +93,14 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 	case R_CREEP:
 		m_nMotion = MOTION_CREEP;
 		break;
-	case R_LINE_FRONT:
-		m_nMotion = MOTION_LINE_FRONT;
+	case R_LINE_FRONT0:
+		m_nMotion = MOTION_LINE_FRONT_0;
+		break;
+	case R_LINE_FRONT1:
+		m_nMotion = MOTION_LINE_FRONT_1;
+		break;
+	case R_LINE_FRONT2:
+		m_nMotion = MOTION_LINE_FRONT_2;
 		break;
 	case R_GO_RUN:
 		m_nMotion = MOTION_RUN;
@@ -104,6 +110,15 @@ bool CStateManager::SetState(R_STATE nState,MV_STEP nStep)
 		break;
 	case R_SHORT_WALK:
 		m_nMotion = MOTION_SHORT_WALK;
+		break;
+	case R_GO_HURDLE:
+		m_nMotion = MOTION_WALK_HURDLE;
+		break;
+	case R_STAIR_UP:
+		m_nMotion = MOTION_STAIR_UP;
+		break;
+	case R_LINE_HURDLE:
+		m_nMotion = MOTION_SEE_HURDLE;
 		break;
 	
 	default:

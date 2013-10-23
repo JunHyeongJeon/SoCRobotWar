@@ -247,7 +247,7 @@ int main(int argc, char **argv)
 		CMission* pRed = new CRed();
 		CMission* pBari2 = new CBari2();
 		CMission* pLine = new CLine();
-		
+		CMission* pTurn = new CTurn();
 		TSEND m_send;
 		M_STATE m_state = M_BARI1;
 		
@@ -299,6 +299,9 @@ int main(int argc, char **argv)
 			case M_ALIGN_CENTER:
 				m_send = pLine->Missioning(img_buf, tempRev[2]); 
 				break;
+			case M_TURN:
+				m_send = pTurn->Missioning(img_buf, tempRev[2]);
+				break;
 			}
 
 			//LCDDebug(img_buf,m_state);
@@ -329,6 +332,8 @@ int main(int argc, char **argv)
 		delete pGolf;
 		delete pRed;
 		delete pBari2;
+		delete pTurn;
+		delete pLine;
 		
 		//////////////TKTK
 

@@ -33,7 +33,7 @@
     <ClCompile Include="..\..\Line.c">
       <Filter>0. Mission\8.Line</Filter>
     </ClCompile>
-    <ClCompile Include="Turn.c">
+    <ClCompile Include="..\..\Turn.c">
       <Filter>0. Mission</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +71,7 @@
     <ClInclude Include="..\..\Line.h">
       <Filter>0. Mission\8.Line</Filter>
     </ClInclude>
-    <ClInclude Include="Turn.h">
+    <ClInclude Include="..\..\Turn.h">
       <Filter>0. Mission</Filter>
     </ClInclude>
   </ItemGroup>
